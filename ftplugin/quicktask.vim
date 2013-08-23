@@ -26,9 +26,9 @@ set cpo&vim
 " Set all buffer-local settings: {{{1
 setlocal comments=b:#,f:-,f:*
 setlocal formatoptions=qnwta
-setlocal spell
-setlocal wrap
-setlocal textwidth=80
+"setlocal spell
+"setlocal wrap
+setlocal textwidth=160
 
 " Quicktask uses real tabs with a visible indentation of two spaces.
 setlocal expandtab
@@ -328,9 +328,8 @@ function! s:AddTask(after, indent, move_cursor)
 	endif
 
 	" Compose the two lines to insert
-	let task_line = physical_indent . "- "
-	let date_line = physical_indent . s:one_indent . "@ Added [".strftime("%a %Y-%m-%d")."]"
-	call append(a:after, [ task_line, date_line ])
+	let task_line = physical_indent . "- [".strftime("%a %Y-%m-%d")."] "
+	call append(a:after, [ task_line ])
 
 	if a:move_cursor
 		call cursor(a:after+1, len(getline(a:after+1)))
